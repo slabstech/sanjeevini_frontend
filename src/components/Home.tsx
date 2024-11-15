@@ -23,6 +23,7 @@ class Home extends Component<HomeProps, AppState> {
 
   render() {
     return (
+      <div style={{ display: 'none' }}>
       <Container>
         <Typography variant="h4" gutterBottom>
           LLM Use Cases
@@ -42,6 +43,7 @@ class Home extends Component<HomeProps, AppState> {
           </Grid>
         </Grid>
       </Container>
+      </div>
     );
   }
 }

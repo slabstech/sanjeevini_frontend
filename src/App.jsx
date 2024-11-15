@@ -1,16 +1,17 @@
 import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import './App.css';
 import NavBar from './components/utils/NavBar';
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import { useState } from 'react';
 import Login from './components/Login/Login'
 import NoMatch from './components/utils/NoMatch'
+import { Box, Typography, Link, IconButton } from '@mui/material';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import DiscordIcon from './assets/discordIcon';
 
 function App() {
 
@@ -50,6 +51,43 @@ function App() {
               </Typography>
             </Toolbar>
           </AppBar>
+          <footer>
+      <Box
+        sx={{
+          position: 'fixed',
+          bottom: '10px',
+          right: '10px',
+        }}
+      >
+      </Box>
+
+      <Box
+        sx={{
+          position: 'fixed',
+          bottom: '10px',
+          left: '10px',
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <Typography variant="body2" color="text.secondary" align="center">
+          {'© '}
+          <Link color="inherit" href="https://gaganyatri.in/">
+            gaganyatri.in
+          </Link>{' '}
+          |
+          <IconButton size="small" href="https://github.com/slabstech" target="_blank">
+            <GitHubIcon />
+          </IconButton>
+          <IconButton size="small" href="https://x.com/gaganyatri" target="_blank">
+            <TwitterIcon />
+          </IconButton>
+          <IconButton size="small" href="https://discord.gg/HAXjG7sC" target="_blank">
+            <DiscordIcon />
+          </IconButton>
+        </Typography>
+      </Box>
+      </footer>
         </Box>
   );
 }
