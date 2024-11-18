@@ -8,6 +8,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import DiscordIcon from './assets/discordIcon';
 import UserApp from './components/User/UserApp';
+import DoctorApp from './components/Doctor/DoctorApp';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home serverUrl={onlineUrl} />} />
           <Route path="/user" element={<UserApp  />} />
+          <Route path="/doctor" element={<DoctorApp  />} />
           <Route path="/login" element={<Login/>} />
           <Route path="*" element={<NoMatch />} />
         </Routes>

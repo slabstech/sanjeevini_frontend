@@ -2,15 +2,15 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const API_URL = import.meta.env.VITE_SANJEEVINI_BACKEND_APP_API_URL;
 
-export const fetchUserAppData = createAsyncThunk<
-User[], 
+export const fetchDoctorAppData = createAsyncThunk<
+Doctor[], 
   {
     page?: number;
     appointment_day_after?: string;
     appointment_day_before?: string;
     user_id?: number;
   } & { rejectValue: string }, { rejectValue: string }>(
-      'pathfinderMission/fetchUserAppData',
+      'pathfinderMission/fetchDoctorAppData',
       async (args:any, thunkAPI:any) => {
         try {
           let url = API_URL + 'user/?page=';
@@ -31,10 +31,10 @@ User[],
             throw new Error(`HTTP error! status: ${response.status}`);
           }
           const data = await response.json();
-          const userData = data.results.map((rawUser: any) => ({
-            id: rawUser.id,
-            appointment_day: rawUser.appointment_day,
-            appointment_time: new Date(rawUser.appointment_time).toISOString().slice(11, 19),
+          const userData = data.results.map((rawDoctor: any) => ({
+            id: rawDoctor.id,
+            appointment_day: rawDoctor.appointment_day,
+            appointment_time: new Date(rawDoctor.appointment_time).toISOString().slice(11, 19),
 
             // map other properties as needed
           }));
@@ -44,7 +44,7 @@ User[],
         }
       }
   );
-interface User {
+interface Doctor {
   id: bigint;
   appointment_day: string;
   appointment_time: string;
@@ -52,14 +52,14 @@ interface User {
   status: string;
   observations: string;
 }
-interface UserState {
-  userData: User[];
+interface DoctorState {
+  userData: Doctor[];
   loading: boolean;
   error: string | null;
   page: number;
   totalPages: number;
 }
-const initialState: UserState = {
+const initialState: DoctorState = {
   userData: [],
   loading: false,
   error: null,
@@ -72,16 +72,16 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder:any) => {
     builder
-        .addCase(fetchUserAppData.pending, (state:any) => {
+        .addCase(fetchDoctorAppData.pending, (state:any) => {
           state.loading = true;
           state.error = null;
         })
-        .addCase(fetchUserAppData.fulfilled, (state:any, action:PayloadAction<User[]>) => {
+        .addCase(fetchDoctorAppData.fulfilled, (state:any, action:PayloadAction<Doctor[]>) => {
           state.loading = false;
           state.userData.push(...action.payload);
           //state.totalPages = action.meta.arg.total_pages;
         })
-        .addCase(fetchUserAppData.rejected, (state:any, action:any) => {
+        .addCase(fetchDoctorAppData.rejected, (state:any, action:any) => {
           state.loading = false;
           state.error = action.error.message || 'Something went wrong';
         });

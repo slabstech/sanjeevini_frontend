@@ -26,6 +26,35 @@ class Home extends Component<HomeProps, AppState> {
         <Typography variant="h4" gutterBottom>
           Sanjeevini - AI Health App
         </Typography>
+        <Typography variant="body1" paragraph>
+          <strong>Why Sanjeevini ?</strong>
+          <ul>
+            <li>A family member underwent emergency angioplasty after a previous Heart attack (Myocardial Infarction) was undetected.</li>
+            <li>Breathelessness led to a Hospital visit, after an IV drip and diagnosis of Gastric/Acidity, they were sent home.</li>
+            <li>A general physician recommended a cardiologist after observing abnormality in EEG/ECG diagnostics.</li>
+            <li>Cardiologist asked for prior Heart check reports which were unavailable instantly.</li>
+          </ul>
+        </Typography>
+        <Typography variant="body1" paragraph>
+          <strong>What will Sanjeevini do ?</strong>
+          <ul>
+            <li>Connect with Ayushman Bharat Digital Mission and provide Medical history to Doctor's during Consultation.</li>
+            <li>Provide data management facility to Doctor's with Open Source development.</li>
+            <li>Notify Users about:
+              <ul>
+                <li>Daily medication</li>
+                <li>Next appointments</li>
+              </ul>
+            </li>
+          </ul>
+        </Typography>
+        <Typography variant="body1" paragraph>
+          <strong>What will Sanjeevini not do ?</strong>
+          <ul>
+            <li>Fix health issues</li>
+            <li>Provide medical advice</li>
+          </ul>
+        </Typography>
       </Container>
       <div  style={{ display: 'none' }} >
       <Container>
