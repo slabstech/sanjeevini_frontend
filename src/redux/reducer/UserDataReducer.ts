@@ -1,14 +1,14 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 const API_URL = import.meta.env.VITE_BACKEND_APP_API_URL;
 
-export const fetchUserData =
+export const fetchUserAppData =
   createAsyncThunk<string[], {
     page?: number;
     appointment_day_after?: string;
     appointment_day_before?: string;
-    norad_id?: number;
+    user_id?: number;
   } & { rejectValue: string }, { rejectValue: string }>(
-      'pathfinderMission/fetchUserData',
+      'pathfinderMission/fetchUserAppData',
       async (args:any, thunkAPI:any) => {
         try {
           let url = API_URL + 'user/?page=';
@@ -22,7 +22,7 @@ export const fetchUserData =
             url += `&appointment_day_before=${args.appointment_day_before}`;
           }
           if (args.norad_id) {
-            url += `&norad_id=${args.norad_id}`;
+            url += `&user_id=${args.user_id}`;
           }
           const response = await fetch(url);
           if (!response.ok) {
@@ -70,16 +70,16 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder:any) => {
     builder
-        .addCase(fetchUserData.pending, (state:any) => {
+        .addCase(fetchUserAppData.pending, (state:any) => {
           state.loading = true;
           state.error = null;
         })
-        .addCase(fetchUserData.fulfilled, (state:any, action:any) => {
+        .addCase(fetchUserAppData.fulfilled, (state:any, action:any) => {
           state.loading = false;
           state.userData.push(...action.payload);
           state.totalPages = action.meta.arg.total_pages;
         })
-        .addCase(fetchUserData.rejected, (state:any, action:any) => {
+        .addCase(fetchUserAppData.rejected, (state:any, action:any) => {
           state.loading = false;
           state.error = action.error.message || 'Something went wrong';
         });

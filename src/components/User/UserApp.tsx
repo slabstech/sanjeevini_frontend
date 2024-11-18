@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Box from '@mui/material/Box';
-import {Button, Typography, TextField} from '@mui/material';
+import {Button, Typography} from '@mui/material';
 import {LocalizationProvider, DatePicker} from '@mui/x-date-pickers';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {DataGrid, GridColDef, GridToolbarContainer, useGridApiContext}
   from '@mui/x-data-grid';
-import {fetchUserData} from '../../redux/reducer/UserDataReducer';
+import {fetchUserAppData} from '../../redux/reducer/UserDataReducer';
 import {RootState} from '../../redux/store';
+import { Dayjs } from 'dayjs';
 
 interface Message {
   id: bigint;
@@ -83,33 +84,44 @@ function CustomToolbar() {
 const UserApp: React.FC = () => {
   const [timerows, setTimerows] = useState<Array<Message>>([]);
   const dispatch = useDispatch();
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
+  const [startDate, setStartDate] = useState<Dayjs | null>(null);
+  const [endDate, setEndDate] = useState<Dayjs | null>(null);
   const todayDate = new Date().toISOString().slice(0, 10);
   const today = new Date();
   const nextSevenDays = new Date(today.getTime() +
     (7 * 24 * 60 * 60 * 1000)).toISOString().slice(0, 10);
-  const noradId = 60476;
+  const userId = 10001;
 
   const userDataList = useSelector((state: RootState) =>
     state.userDataList.userData);
 
   useEffect(() => {
     dispatch(
+      fetchUserAppData({
+        page: 1,
+        appointment_day_after: todayDate,
+        appointment_day_before: nextSevenDays,
+        user_id: userId,
+        rejectValue: 'Failed to fetch Appointment.',
+      })
+  );
+}, [dispatch, todayDate, nextSevenDays]);
+/*
+    dispatch(
         fetchUserData({
           page: 1,
           appointment_day_after: todayDate,
           appointment_day_before: nextSevenDays,
-          norad_id: noradId,
+          user_id: userId,
           rejectValue: 'Failed to fetch Appointment.',
         })
     );
   }, [dispatch, todayDate, nextSevenDays]);
-
+*/
   useEffect(() => {
     if (startDate && endDate) {
       const filteredData = userDataList.filter((item:any) => {
-        const itemDate = new Date(item.appointment_day);
+        const itemDate = new Dayjs(item.appointment_day);
         return itemDate >= startDate && itemDate <= endDate;
       });
       setTimerows(filteredData);
@@ -124,24 +136,22 @@ const UserApp: React.FC = () => {
         Appointment
       </Typography>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker
-          label="Start Date"
-          value={startDate}
-          onChange={(newValue) => {
-            setStartDate(newValue ? newValue.toDate() : null);
-          }}
-          renderInput={(params:any) => <TextField {...params} />}
-        />
-        <DatePicker
-          label="End Date"
-          value={endDate}
-          onChange={(newValue) => {
-            setEndDate(newValue ? newValue.toDate() : null);
-          }}
-          renderInput={(params:any) => <TextField {...params} />}
-        />
-      </LocalizationProvider>
-      <DataGrid
+      <DatePicker
+        label="Start Date"
+        value={startDate}
+        onChange={(newValue) => {
+          setStartDate(newValue);
+        }}
+      />
+      <DatePicker
+        label="End Date"
+        value={endDate}
+        onChange={(newValue) => {
+          setEndDate(newValue);
+        }}
+      />
+    </LocalizationProvider>
+    <DataGrid
         rows={timerows}
         columns={columns}
         slots={{

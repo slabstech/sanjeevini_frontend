@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
-import ErrorBoundary from './components/utils/ErrorBoundary.tsx';
+import App from './App';
+import ErrorBoundary from './components/utils/ErrorBoundary';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { lightBlue, deepOrange } from '@mui/material/colors';
 import { BrowserRouter } from 'react-router-dom';
