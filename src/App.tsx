@@ -1,5 +1,3 @@
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import NavBar from './components/utils/NavBar';
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
@@ -9,7 +7,7 @@ import { Box, Typography, Link, IconButton } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import DiscordIcon from './assets/discordIcon';
-import './App.css'
+import UserApp from './components/User/UserApp';
 
 function App() {
 
@@ -20,23 +18,11 @@ function App() {
           <NavBar />
         <Routes>
           <Route path="/" element={<Home serverUrl={onlineUrl} />} />
+          <Route path="/user" element={<UserApp  />} />
           <Route path="/login" element={<Login/>} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
 
-          {/* Main Content */}
-          <div style={{ minHeight: "80vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <Typography variant="h4">AI - Health Assistant App</Typography>
-          </div>
-
-          {/* Footer */}
-          <AppBar position="static" color="secondary" sx={{ top: 'auto', bottom: 0 }}>
-            <Toolbar>
-              <Typography variant="body1" color="inherit" sx={{ flexGrow: 1 }}>
-                Footer - All rights reserved
-              </Typography>
-            </Toolbar>
-          </AppBar>
           <footer>
       <Box
         sx={{
@@ -58,8 +44,8 @@ function App() {
       >
         <Typography variant="body2" color="text.secondary" align="center">
           {'© '}
-          <Link color="inherit" href="https://gaganyatri.in/">
-            gaganyatri.in
+          <Link color="inherit" href="https://sanjeevini.me/">
+            sanjeevini.me
           </Link>{' '}
           |
           <IconButton size="small" href="https://github.com/slabstech" target="_blank">

@@ -21,10 +21,16 @@ class Home extends Component<HomeProps, AppState> {
 
   render() {
     return (
-      <div style={{ display: 'none' }}>
+      <div style={{ minHeight: "80vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
       <Container>
         <Typography variant="h4" gutterBottom>
-          LLM Use Cases
+          Sanjeevini - AI Health App
+        </Typography>
+      </Container>
+      <div  style={{ display: 'none' }} >
+      <Container>
+        <Typography variant="h4" gutterBottom>
+          Sanjeevini - AI Health App
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
@@ -41,6 +47,7 @@ class Home extends Component<HomeProps, AppState> {
           </Grid>
         </Grid>
       </Container>
+      </div>
       </div>
     );
   }
