@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const API_URL = import.meta.env.VITE_BACKEND_APP_API_URL;
+const API_URL = import.meta.env.VITE_SANJEEVINI_BACKEND_APP_API_URL;
 
 export const fetchDoctorAppData = createAsyncThunk<
 Doctor[], 
