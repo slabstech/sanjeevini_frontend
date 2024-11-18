@@ -34,17 +34,17 @@ export const missionsSlice = createSlice({
   name: 'missions',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: (builder:any) => {
     builder
-        .addCase(fetchMissions.pending, (state) => {
+        .addCase(fetchMissions.pending, (state:any) => {
           state.loading = true;
           state.error = null;
         })
-        .addCase(fetchMissions.fulfilled, (state, action) => {
+        .addCase(fetchMissions.fulfilled, (state:any, action:any) => {
           state.loading = false;
           state.missions = action.payload;
         })
-        .addCase(fetchMissions.rejected, (state, action) => {
+        .addCase(fetchMissions.rejected, (state:any, action:any) => {
           state.loading = false;
           state.error = action.error.message || 'Something went wrong';
         });

@@ -11,12 +11,10 @@ import {RootState} from '../../redux/store';
 
 interface Message {
   id: bigint;
-  overpass_day: string;
-  aos: string;
-  los: string;
-  aos_az: string;
-  los_az: string;
-  duration: string;
+  appointment_day: string;
+  appointment_time: string;
+  doctor_name: string;
+  status: string;
   observations: string;
 }
 
@@ -94,24 +92,24 @@ const UserApp: React.FC = () => {
   const noradId = 60476;
 
   const userDataList = useSelector((state: RootState) =>
-    state.userDataList.satnogsData);
+    state.userDataList.userData);
 
   useEffect(() => {
     dispatch(
         fetchUserData({
           page: 1,
-          overpass_day_after: todayDate,
-          overpass_day_before: nextSevenDays,
+          appointment_day_after: todayDate,
+          appointment_day_before: nextSevenDays,
           norad_id: noradId,
-          rejectValue: 'Failed to fetch satnogs.',
+          rejectValue: 'Failed to fetch Appointment.',
         })
     );
   }, [dispatch, todayDate, nextSevenDays]);
 
   useEffect(() => {
     if (startDate && endDate) {
-      const filteredData = userDataList.filter((item) => {
-        const itemDate = new Date(item.overpass_day);
+      const filteredData = userDataList.filter((item:any) => {
+        const itemDate = new Date(item.appointment_day);
         return itemDate >= startDate && itemDate <= endDate;
       });
       setTimerows(filteredData);
@@ -130,17 +128,17 @@ const UserApp: React.FC = () => {
           label="Start Date"
           value={startDate}
           onChange={(newValue) => {
-            setStartDate(newValue);
+            setStartDate(newValue ? newValue.toDate() : null);
           }}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={(params:any) => <TextField {...params} />}
         />
         <DatePicker
           label="End Date"
           value={endDate}
           onChange={(newValue) => {
-            setEndDate(newValue);
+            setEndDate(newValue ? newValue.toDate() : null);
           }}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={(params:any) => <TextField {...params} />}
         />
       </LocalizationProvider>
       <DataGrid
