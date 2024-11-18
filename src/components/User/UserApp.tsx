@@ -7,8 +7,8 @@ import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {DataGrid, GridColDef, GridToolbarContainer, useGridApiContext}
   from '@mui/x-data-grid';
 import {fetchUserAppData} from '../../redux/reducer/UserDataReducer';
-import {RootState} from '../../redux/store';
-import { Dayjs } from 'dayjs';
+import {RootState, AppDispatch} from '../../redux/store';
+import dayjs,{ Dayjs } from 'dayjs';
 
 interface Message {
   id: bigint;
@@ -83,7 +83,7 @@ function CustomToolbar() {
 
 const UserApp: React.FC = () => {
   const [timerows, setTimerows] = useState<Array<Message>>([]);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const [startDate, setStartDate] = useState<Dayjs | null>(null);
   const [endDate, setEndDate] = useState<Dayjs | null>(null);
   const todayDate = new Date().toISOString().slice(0, 10);
@@ -105,24 +105,13 @@ const UserApp: React.FC = () => {
         rejectValue: 'Failed to fetch Appointment.',
       })
   );
-}, [dispatch, todayDate, nextSevenDays]);
-/*
-    dispatch(
-        fetchUserData({
-          page: 1,
-          appointment_day_after: todayDate,
-          appointment_day_before: nextSevenDays,
-          user_id: userId,
-          rejectValue: 'Failed to fetch Appointment.',
-        })
-    );
-  }, [dispatch, todayDate, nextSevenDays]);
-*/
+}, [dispatch, todayDate, nextSevenDays, userId]);
+
   useEffect(() => {
     if (startDate && endDate) {
       const filteredData = userDataList.filter((item:any) => {
-        const itemDate = new Dayjs(item.appointment_day);
-        return itemDate >= startDate && itemDate <= endDate;
+        const itemDate = dayjs(item.appointment_day);
+        return itemDate.isAfter(startDate) && itemDate.isBefore(endDate);
       });
       setTimerows(filteredData);
     } else {

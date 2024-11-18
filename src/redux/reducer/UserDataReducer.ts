@@ -1,8 +1,10 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 const API_URL = import.meta.env.VITE_BACKEND_APP_API_URL;
 
-export const fetchUserAppData =
-  createAsyncThunk<string[], {
+export const fetchUserAppData = createAsyncThunk<
+User[], 
+  {
     page?: number;
     appointment_day_after?: string;
     appointment_day_before?: string;
@@ -74,10 +76,10 @@ export const userSlice = createSlice({
           state.loading = true;
           state.error = null;
         })
-        .addCase(fetchUserAppData.fulfilled, (state:any, action:any) => {
+        .addCase(fetchUserAppData.fulfilled, (state:any, action:PayloadAction<User[]>) => {
           state.loading = false;
           state.userData.push(...action.payload);
-          state.totalPages = action.meta.arg.total_pages;
+          //state.totalPages = action.meta.arg.total_pages;
         })
         .addCase(fetchUserAppData.rejected, (state:any, action:any) => {
           state.loading = false;
