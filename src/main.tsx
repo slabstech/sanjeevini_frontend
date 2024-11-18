@@ -13,16 +13,20 @@ const theme = createTheme({
     secondary: deepOrange,
   },
 });
-
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <ErrorBoundary>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  createRoot(rootElement).render(
+    <StrictMode>
+      <ErrorBoundary>
+        <BrowserRouter>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
             <App />
-        </ThemeProvider>
-      </BrowserRouter>
-    </ErrorBoundary>
-  </StrictMode>,
-);
+          </ThemeProvider>
+        </BrowserRouter>
+      </ErrorBoundary>
+    </StrictMode>,
+  );
+} else {
+  console.error("Root element not found");
+}

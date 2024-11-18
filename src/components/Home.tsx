@@ -7,7 +7,6 @@ interface AppState {
 
 type HomeProps = {
   serverUrl: string;
-  isOnline: boolean;
 };
 
 class Home extends Component<HomeProps, AppState> {
@@ -18,7 +17,6 @@ class Home extends Component<HomeProps, AppState> {
   constructor(props:HomeProps) {
     super(props);
     this.serverBaseUrl = this.props.serverUrl;
-    this.isOnline = this.props.isOnline;
   }
 
   render() {

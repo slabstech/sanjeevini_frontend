@@ -73,9 +73,11 @@ const stopRecording = () => {
     } else {
       stopRecording();
     }
+    setIsProduction(true);
+    /*
     if (process.env.NODE_ENV === 'production') {
       setIsProduction(true);
-    }
+    }*/
   }, [isListening]);
 
  
