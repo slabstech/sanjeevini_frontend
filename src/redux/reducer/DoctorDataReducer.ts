@@ -10,10 +10,10 @@ Doctor[],
     appointment_day_before?: string;
     user_id?: number;
   } & { rejectValue: string }, { rejectValue: string }>(
-      'pathfinderMission/fetchDoctorAppData',
+      'sanjeeviniApp/fetchDoctorAppData',
       async (args:any, thunkAPI:any) => {
         try {
-          let url = API_URL + 'user/?page=';
+          let url = API_URL + 'doctorapp/?page=';
           if (args.page) {
             url += args.page;
           }
@@ -23,7 +23,7 @@ Doctor[],
           if (args.appointment_day_before) {
             url += `&appointment_day_before=${args.appointment_day_before}`;
           }
-          if (args.norad_id) {
+          if (args.user_id) {
             url += `&user_id=${args.user_id}`;
           }
           const response = await fetch(url);
@@ -35,6 +35,9 @@ Doctor[],
             id: rawDoctor.id,
             appointment_day: rawDoctor.appointment_day,
             appointment_time: new Date(rawDoctor.appointment_time).toISOString().slice(11, 19),
+            doctor_name: rawDoctor.doctor_name,
+            status: rawDoctor.status,
+            observations: rawDoctor.observations
 
             // map other properties as needed
           }));

@@ -90,10 +90,12 @@ const UserApp: React.FC = () => {
   const today = new Date();
   const nextSevenDays = new Date(today.getTime() +
     (7 * 24 * 60 * 60 * 1000)).toISOString().slice(0, 10);
-  const userId = 10001;
+  const userId = 1;
 
   const userDataList = useSelector((state: RootState) =>
     state.userDataList.userData);
+
+  console.log(userDataList);
 
   useEffect(() => {
     dispatch(

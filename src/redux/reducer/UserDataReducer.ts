@@ -10,10 +10,10 @@ User[],
     appointment_day_before?: string;
     user_id?: number;
   } & { rejectValue: string }, { rejectValue: string }>(
-      'pathfinderMission/fetchUserAppData',
+      'sanjeeviniApp/fetchUserAppData',
       async (args:any, thunkAPI:any) => {
         try {
-          let url = API_URL + 'user/?page=';
+          let url = API_URL + 'userapp/?page=';
           if (args.page) {
             url += args.page;
           }
@@ -23,7 +23,7 @@ User[],
           if (args.appointment_day_before) {
             url += `&appointment_day_before=${args.appointment_day_before}`;
           }
-          if (args.norad_id) {
+          if (args.user_id) {
             url += `&user_id=${args.user_id}`;
           }
           const response = await fetch(url);
