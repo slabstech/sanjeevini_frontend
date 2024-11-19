@@ -27,16 +27,8 @@ class Home extends Component<HomeProps, AppState> {
           Sanjeevini - AI Health App
         </Typography>
         <Typography variant="body1" paragraph>
-          <strong>Why Sanjeevini ?</strong>
-          <ul>
-            <li>A family member underwent emergency angioplasty after a previous Heart attack (Myocardial Infarction) was undetected.</li>
-            <li>Breathelessness led to a Hospital visit, after an IV drip and diagnosis of Gastric/Acidity, they were sent home.</li>
-            <li>A general physician recommended a cardiologist after observing abnormality in EEG/ECG diagnostics.</li>
-            <li>Cardiologist asked for prior Heart check reports which were unavailable instantly.</li>
-          </ul>
-        </Typography>
-        <Typography variant="body1" paragraph>
           <strong>What will Sanjeevini do ?</strong>
+        </Typography>       
           <ul>
             <li>Connect with Ayushman Bharat Digital Mission and provide Medical history to Doctor's during Consultation.</li>
             <li>Provide data management facility to Doctor's with Open Source development.</li>
@@ -47,14 +39,22 @@ class Home extends Component<HomeProps, AppState> {
               </ul>
             </li>
           </ul>
-        </Typography>
         <Typography variant="body1" paragraph>
           <strong>What will Sanjeevini not do ?</strong>
+        </Typography>
           <ul>
             <li>Fix health issues</li>
             <li>Provide medical advice</li>
           </ul>
+        <Typography variant="body1" paragraph>
+          <strong>Why Sanjeevini ?</strong>
         </Typography>
+          <ul>
+            <li>A family member underwent emergency angioplasty after a previous Heart attack (Myocardial Infraction) was undetected.</li>
+            <li>The cardiologist requested prior health check reports, but these were unavailable instantly.</li>
+            <li>Incomplete reporting can lead to misdiagnosis and underestimate the seriousness of health concerns.</li>
+            <li>This can result in delayed or inappropriate treatment, which can further compromise health outcomes.</li>
+          </ul>
       </Container>
       <div  style={{ display: 'none' }} >
       <Container>

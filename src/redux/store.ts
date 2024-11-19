@@ -2,10 +2,12 @@ import {configureStore} from '@reduxjs/toolkit';
 import {useDispatch} from 'react-redux';
 import {combineReducers} from 'redux';
 import UserDataReducer from './reducer/UserDataReducer';
+import DoctorDataReducer from './reducer/DoctorDataReducer';
 
 
 const reducer = combineReducers({
-  userDataList: UserDataReducer,
+  userDataList: UserDataReducer, 
+  doctorDataList: DoctorDataReducer
 });
 
 export const store = configureStore({

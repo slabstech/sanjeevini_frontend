@@ -14,7 +14,7 @@ interface Message {
   id: bigint;
   appointment_day: string;
   appointment_time: string;
-  doctor_name: string;
+  patient_name: string;
   status: string;
   observations: string;
 }
@@ -34,8 +34,8 @@ const columns: GridColDef<Message>[] = [
     editable: false,
   },
   {
-    field: 'doctor_name',
-    headerName: 'Doctor',
+    field: 'patient_name',
+    headerName: 'Patient',
     width: 150,
     editable: false,
   },
@@ -90,10 +90,10 @@ const DoctorApp: React.FC = () => {
   const today = new Date();
   const nextSevenDays = new Date(today.getTime() +
     (7 * 24 * 60 * 60 * 1000)).toISOString().slice(0, 10);
-  const userId = 10001;
+  const doctorId = 10001;
 
-  const userDataList = useSelector((state: RootState) =>
-    state.userDataList.userData);
+  const doctorDataList = useSelector((state: RootState) =>
+    state.doctorDataList.doctorData);
 
   useEffect(() => {
     dispatch(
@@ -101,23 +101,23 @@ const DoctorApp: React.FC = () => {
         page: 1,
         appointment_day_after: todayDate,
         appointment_day_before: nextSevenDays,
-        user_id: userId,
+        doctor_id: doctorId,
         rejectValue: 'Failed to fetch Appointment.',
       })
   );
-}, [dispatch, todayDate, nextSevenDays, userId]);
+}, [dispatch, todayDate, nextSevenDays, doctorId]);
 
   useEffect(() => {
     if (startDate && endDate) {
-      const filteredData = userDataList.filter((item:any) => {
+      const filteredData = doctorDataList.filter((item:any) => {
         const itemDate = dayjs(item.appointment_day);
         return itemDate.isAfter(startDate) && itemDate.isBefore(endDate);
       });
       setTimerows(filteredData);
     } else {
-      setTimerows(userDataList);
+      setTimerows(doctorDataList);
     }
-  }, [userDataList, startDate, endDate]);
+  }, [doctorDataList, startDate, endDate]);
 
   return (
     <Box sx={{height: '100%'}}>

@@ -1,19 +1,19 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const API_URL = import.meta.env.VITE_SANJEEVINI_BACKEND_APP_API_URL;
 
 export const fetchUserAppData = createAsyncThunk<
-User[], 
+string[], 
   {
     page?: number;
     appointment_day_after?: string;
     appointment_day_before?: string;
     user_id?: number;
   } & { rejectValue: string }, { rejectValue: string }>(
-      'pathfinderMission/fetchUserAppData',
+      'sanjeeviniApp/fetchUserAppData',
       async (args:any, thunkAPI:any) => {
         try {
-          let url = API_URL + 'user/?page=';
+          let url = API_URL + 'userapp/?page=';
           if (args.page) {
             url += args.page;
           }
@@ -23,7 +23,7 @@ User[],
           if (args.appointment_day_before) {
             url += `&appointment_day_before=${args.appointment_day_before}`;
           }
-          if (args.norad_id) {
+          if (args.user_id) {
             url += `&user_id=${args.user_id}`;
           }
           const response = await fetch(url);
@@ -34,8 +34,10 @@ User[],
           const userData = data.results.map((rawUser: any) => ({
             id: rawUser.id,
             appointment_day: rawUser.appointment_day,
-            appointment_time: new Date(rawUser.appointment_time).toISOString().slice(11, 19),
-
+            //appointment_time: new Date(rawUser.appointment_time).toISOString().slice(11, 19),
+            doctor_name: rawUser.doctor_name,
+            status: rawUser.status,
+            observations: rawUser.observations
             // map other properties as needed
           }));
           return userData;
@@ -76,10 +78,10 @@ export const userSlice = createSlice({
           state.loading = true;
           state.error = null;
         })
-        .addCase(fetchUserAppData.fulfilled, (state:any, action:PayloadAction<User[]>) => {
+        .addCase(fetchUserAppData.fulfilled, (state:any, action:any) => {
           state.loading = false;
           state.userData.push(...action.payload);
-          //state.totalPages = action.meta.arg.total_pages;
+          state.totalPages = action.meta.arg.total_pages;
         })
         .addCase(fetchUserAppData.rejected, (state:any, action:any) => {
           state.loading = false;
