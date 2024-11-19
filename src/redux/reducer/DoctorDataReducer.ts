@@ -1,14 +1,14 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const API_URL = import.meta.env.VITE_SANJEEVINI_BACKEND_APP_API_URL;
 
 export const fetchDoctorAppData = createAsyncThunk<
-Doctor[], 
+string[], 
   {
     page?: number;
     appointment_day_after?: string;
     appointment_day_before?: string;
-    user_id?: number;
+    doctor_id?: number;
   } & { rejectValue: string }, { rejectValue: string }>(
       'sanjeeviniApp/fetchDoctorAppData',
       async (args:any, thunkAPI:any) => {
@@ -23,27 +23,27 @@ Doctor[],
           if (args.appointment_day_before) {
             url += `&appointment_day_before=${args.appointment_day_before}`;
           }
-          if (args.user_id) {
-            url += `&user_id=${args.user_id}`;
+          if (args.doctor_id) {
+            url += `&doctor_id=${args.doctor_id}`;
           }
           const response = await fetch(url);
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
           const data = await response.json();
-          const userData = data.results.map((rawDoctor: any) => ({
+          const doctorData = data.results.map((rawDoctor: any) => ({
             id: rawDoctor.id,
             appointment_day: rawDoctor.appointment_day,
-            appointment_time: new Date(rawDoctor.appointment_time).toISOString().slice(11, 19),
-            doctor_name: rawDoctor.doctor_name,
+            //appointment_time: new Date(rawDoctor.appointment_time).toISOString().slice(11, 19),
+            
+            patient_name: rawDoctor.patient_name,
             status: rawDoctor.status,
             observations: rawDoctor.observations
-
             // map other properties as needed
           }));
-          return userData;
+          return doctorData;
         } catch (error) {
-          return thunkAPI.rejectWithValue('Failed to fetch user.');
+          return thunkAPI.rejectWithValue('Failed to fetch doctor.');
         }
       }
   );
@@ -51,26 +51,26 @@ interface Doctor {
   id: bigint;
   appointment_day: string;
   appointment_time: string;
-  doctor_name: string;
+  patient_name: string;
   status: string;
   observations: string;
 }
 interface DoctorState {
-  userData: Doctor[];
+  doctorData: Doctor[];
   loading: boolean;
   error: string | null;
   page: number;
   totalPages: number;
 }
 const initialState: DoctorState = {
-  userData: [],
+  doctorData: [],
   loading: false,
   error: null,
   page: 1,
   totalPages: 0,
 };
-export const userSlice = createSlice({
-  name: 'user',
+export const doctorSlice = createSlice({
+  name: 'doctor',
   initialState,
   reducers: {},
   extraReducers: (builder:any) => {
@@ -79,10 +79,10 @@ export const userSlice = createSlice({
           state.loading = true;
           state.error = null;
         })
-        .addCase(fetchDoctorAppData.fulfilled, (state:any, action:PayloadAction<Doctor[]>) => {
+        .addCase(fetchDoctorAppData.fulfilled, (state:any, action:any) => {
           state.loading = false;
-          state.userData.push(...action.payload);
-          //state.totalPages = action.meta.arg.total_pages;
+          state.doctorData.push(...action.payload);
+          state.totalPages = action.meta.arg.total_pages;
         })
         .addCase(fetchDoctorAppData.rejected, (state:any, action:any) => {
           state.loading = false;
@@ -90,4 +90,4 @@ export const userSlice = createSlice({
         });
   },
 });
-export default userSlice.reducer;
+export default doctorSlice.reducer;
