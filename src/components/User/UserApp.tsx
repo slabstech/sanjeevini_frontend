@@ -1,11 +1,14 @@
 import { Component } from 'react';
 import { Container, Grid, Typography, Divider } from '@mui/material';
 import UserAppointments from './UserApppointments';
+import DiabetesChart from './DiabetesChart';
+import WeightChart from './WeightChart';
+import MaternityChart from './MaternityChart';
+import CardiacChart from './CardiacChart';
 
 interface AppState {}
 
 type UserAppProps = {
-  serverUrl: string;
 };
 
 class UserApp extends Component<UserAppProps, AppState> {
@@ -15,9 +18,10 @@ class UserApp extends Component<UserAppProps, AppState> {
 
   constructor(props: UserAppProps) {
     super(props);
-    this.serverBaseUrl = this.props.serverUrl;
+    //this.serverBaseUrl = this.props.serverUrl;
   }
 
+  
   render() {
     return (
       <div>
@@ -29,21 +33,27 @@ class UserApp extends Component<UserAppProps, AppState> {
         <Container>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <UserAppointments />
+              <CardiacChart />
+            </Grid>
+            <Grid item xs={12}>
+              <Divider />
+            </Grid>
+            <Grid item xs={12}>
+              <MaternityChart />
+            </Grid>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={6}>
+                <DiabetesChart />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <WeightChart />
+              </Grid>
             </Grid>
             <Grid item xs={12}>
               <Divider />
             </Grid>
             <Grid item xs={12}>
               <UserAppointments />
-            </Grid>
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={6}>
-                <UserAppointments />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <UserAppointments />
-              </Grid>
             </Grid>
           </Grid>
         </Container>
