@@ -96,10 +96,10 @@ const Prescriptions: React.FC = () => {
 
   const userId = 1;
 
-  const userDataList = useSelector((state: RootState) =>
-    state.userDataList.userData);
+  const userPrescriptionDataList = useSelector((state: RootState) =>
+    state.userPrescriptionDataList.userData);
 
-  //console.log(userDataList);
+  //console.log(userPrescriptionDataList);
 
   useEffect(() => {
     if (loading) {
@@ -117,15 +117,15 @@ const Prescriptions: React.FC = () => {
 
   useEffect(() => {
     if (startDate && endDate) {
-      const filteredData = userDataList.filter((item:any) => {
+      const filteredData = userPrescriptionDataList.filter((item:any) => {
         const itemDate = dayjs(item.appointment_day);
         return itemDate.isAfter(startDate) && itemDate.isBefore(endDate);
       });
       setTimerows(filteredData);
     } else {
-      setTimerows(userDataList);
+      setTimerows(userPrescriptionDataList);
     }
-  }, [userDataList, startDate, endDate]);
+  }, [userPrescriptionDataList, startDate, endDate]);
 
   return (
     <Box sx={{height: '100%'}}>

@@ -6,7 +6,7 @@ import {LocalizationProvider, DatePicker} from '@mui/x-date-pickers';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {DataGrid, GridColDef, GridToolbarContainer, useGridApiContext}
   from '@mui/x-data-grid';
-import {fetchUserAppData} from '../../redux/reducer/UserDataReducer';
+import {fetchUserMaternityData} from '../../redux/reducer/user/MaternityDataReducer';
 import {RootState, AppDispatch} from '../../redux/store';
 import dayjs,{ Dayjs } from 'dayjs';
 
@@ -96,15 +96,15 @@ const MaternityChart: React.FC = () => {
 
   const userId = 1;
 
-  const userDataList = useSelector((state: RootState) =>
-    state.userDataList.userData);
+  const userMaternityDataList = useSelector((state: RootState) =>
+    state.userMaternityDataList.userData);
 
-  //console.log(userDataList);
+  //console.log(userMaternityDataList);
 
   useEffect(() => {
     if (loading) {
     dispatch(
-      fetchUserAppData({
+      fetchUserMaternityData({
         page: 1,
         appointment_day_after: todayDate,
         appointment_day_before: nextSevenDays,
@@ -117,15 +117,15 @@ const MaternityChart: React.FC = () => {
 
   useEffect(() => {
     if (startDate && endDate) {
-      const filteredData = userDataList.filter((item:any) => {
+      const filteredData = userMaternityDataList.filter((item:any) => {
         const itemDate = dayjs(item.appointment_day);
         return itemDate.isAfter(startDate) && itemDate.isBefore(endDate);
       });
       setTimerows(filteredData);
     } else {
-      setTimerows(userDataList);
+      setTimerows(userMaternityDataList);
     }
-  }, [userDataList, startDate, endDate]);
+  }, [userMaternityDataList, startDate, endDate]);
 
   return (
     <Box sx={{height: '100%'}}>

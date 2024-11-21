@@ -6,7 +6,7 @@ import {LocalizationProvider, DatePicker} from '@mui/x-date-pickers';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {DataGrid, GridColDef, GridToolbarContainer, useGridApiContext}
   from '@mui/x-data-grid';
-import {fetchUserAppData} from '../../redux/reducer/UserDataReducer';
+import {fetchUserWeightData} from '../../redux/reducer/user/WeightDataReducer';
 import {RootState, AppDispatch} from '../../redux/store';
 import dayjs,{ Dayjs } from 'dayjs';
 import {LineChart} from '@mui/x-charts/LineChart';
@@ -102,15 +102,15 @@ const WeightChart: React.FC = () => {
 
   const userId = 1;
 
-  const userDataList = useSelector((state: RootState) =>
-    state.userDataList.userData);
+  const userWeightDataList = useSelector((state: RootState) =>
+    state.userWeightDataList.userData);
 
-  //console.log(userDataList);
+  //console.log(userWeightDataList);
 
   useEffect(() => {
     if (loading) {
     dispatch(
-      fetchUserAppData({
+      fetchUserWeightData({
         page: 1,
         appointment_day_after: todayDate,
         appointment_day_before: nextSevenDays,
@@ -123,15 +123,15 @@ const WeightChart: React.FC = () => {
 
   useEffect(() => {
     if (startDate && endDate) {
-      const filteredData = userDataList.filter((item:any) => {
+      const filteredData = userWeightDataList.filter((item:any) => {
         const itemDate = dayjs(item.appointment_day);
         return itemDate.isAfter(startDate) && itemDate.isBefore(endDate);
       });
       setTimerows(filteredData);
     } else {
-      setTimerows(userDataList);
+      setTimerows(userWeightDataList);
     }
-  }, [userDataList, startDate, endDate]);
+  }, [userWeightDataList, startDate, endDate]);
 
   return (
     <Box sx={{height: '100%'}}>

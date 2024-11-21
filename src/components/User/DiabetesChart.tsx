@@ -6,7 +6,7 @@ import {LocalizationProvider, DatePicker} from '@mui/x-date-pickers';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {DataGrid, GridColDef, GridToolbarContainer, useGridApiContext}
   from '@mui/x-data-grid';
-import {fetchUserAppData} from '../../redux/reducer/UserDataReducer';
+import {fetchUserDiabetestData} from '../../redux/reducer/user/DiabetesDataReducer';
 import {RootState, AppDispatch} from '../../redux/store';
 import dayjs,{ Dayjs } from 'dayjs';
 import {LineChart} from '@mui/x-charts/LineChart';
@@ -102,15 +102,15 @@ const DiabetesChart: React.FC = () => {
 
   const userId = 1;
 
-  const userDataList = useSelector((state: RootState) =>
-    state.userDataList.userData);
+  const userDiabetesDataList = useSelector((state: RootState) =>
+    state.userDiabetesDataList.userData);
 
-  //console.log(userDataList);
+  //console.log(userDiabetesDataList);
 
   useEffect(() => {
     if (loading) {
     dispatch(
-      fetchUserAppData({
+      fetchUserDiabetestData({
         page: 1,
         appointment_day_after: todayDate,
         appointment_day_before: nextSevenDays,
@@ -123,15 +123,15 @@ const DiabetesChart: React.FC = () => {
 
   useEffect(() => {
     if (startDate && endDate) {
-      const filteredData = userDataList.filter((item:any) => {
+      const filteredData = userDiabetesDataList.filter((item:any) => {
         const itemDate = dayjs(item.appointment_day);
         return itemDate.isAfter(startDate) && itemDate.isBefore(endDate);
       });
       setTimerows(filteredData);
     } else {
-      setTimerows(userDataList);
+      setTimerows(userDiabetesDataList);
     }
-  }, [userDataList, startDate, endDate]);
+  }, [userDiabetesDataList, startDate, endDate]);
 
   return (
     <Box sx={{height: '100%'}}>
