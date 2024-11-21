@@ -9,6 +9,10 @@ import {DataGrid, GridColDef, GridToolbarContainer, useGridApiContext}
 import {fetchUserAppData} from '../../redux/reducer/UserDataReducer';
 import {RootState, AppDispatch} from '../../redux/store';
 import dayjs,{ Dayjs } from 'dayjs';
+import {LineChart} from '@mui/x-charts/LineChart';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
+
 
 interface Message {
   id: bigint;
@@ -89,6 +93,8 @@ const nextSevenDays = new Date(today.getTime() +
 const DiabetesChart: React.FC = () => {
   const [timerows, setTimerows] = useState<Array<Message>>([]);
   const [loading, setLoading] = useState(true); // add loading state
+  const [showChart, setShowChart] = useState(true);
+
 
   const dispatch = useDispatch<AppDispatch>();
   const [startDate, setStartDate] = useState<Dayjs | null>(null);
@@ -148,7 +154,31 @@ const DiabetesChart: React.FC = () => {
         }}
       />
     </LocalizationProvider>
-    <DataGrid
+
+      <FormControlLabel
+  control={
+    <Switch
+      checked={showChart}
+      onChange={() => setShowChart(!showChart)}
+      name="toggleView"
+    />
+  }
+  label={showChart ? "Show Data Grid" : "Show Chart"}
+/>
+{showChart ? (
+
+      <LineChart
+      xAxis={[{data: [1, 2, 3, 5, 8, 10]}]}
+      series={[
+        {
+          data: [2, 5.5, 2, 8.5, 1.5, 5],
+        },
+      ]}
+      width={500}
+      height={300}
+    />
+  ) : (
+          <DataGrid
         rows={timerows}
         columns={columns}
         slots={{
@@ -171,6 +201,8 @@ const DiabetesChart: React.FC = () => {
         checkboxSelection
         disableRowSelectionOnClick
       />
+    )}
+
     </Box>
   );
 };

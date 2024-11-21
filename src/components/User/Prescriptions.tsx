@@ -9,10 +9,6 @@ import {DataGrid, GridColDef, GridToolbarContainer, useGridApiContext}
 import {fetchUserAppData} from '../../redux/reducer/UserDataReducer';
 import {RootState, AppDispatch} from '../../redux/store';
 import dayjs,{ Dayjs } from 'dayjs';
-import {LineChart} from '@mui/x-charts/LineChart';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-
 
 interface Message {
   id: bigint;
@@ -90,11 +86,9 @@ const today = new Date();
 const nextSevenDays = new Date(today.getTime() +
   (7 * 24 * 60 * 60 * 1000)).toISOString().slice(0, 10);
 
-const WeightChart: React.FC = () => {
+const Prescriptions: React.FC = () => {
   const [timerows, setTimerows] = useState<Array<Message>>([]);
   const [loading, setLoading] = useState(true); // add loading state
-  const [showChart, setShowChart] = useState(true);
-
 
   const dispatch = useDispatch<AppDispatch>();
   const [startDate, setStartDate] = useState<Dayjs | null>(null);
@@ -115,7 +109,7 @@ const WeightChart: React.FC = () => {
         appointment_day_after: todayDate,
         appointment_day_before: nextSevenDays,
         user_id: userId,
-        rejectValue: 'Failed to fetch Appointment.',
+        rejectValue: 'Failed to fetch Prescription.',
       })
   ).then(() => setLoading(false));
 }
@@ -136,7 +130,7 @@ const WeightChart: React.FC = () => {
   return (
     <Box sx={{height: '100%'}}>
       <Typography variant="h6" gutterBottom>
-        Weight Chart
+        Prescription
       </Typography>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
@@ -154,31 +148,7 @@ const WeightChart: React.FC = () => {
         }}
       />
     </LocalizationProvider>
-
-      <FormControlLabel
-  control={
-    <Switch
-      checked={showChart}
-      onChange={() => setShowChart(!showChart)}
-      name="toggleView"
-    />
-  }
-  label={showChart ? "Show Data Grid" : "Show Chart"}
-/>
-{showChart ? (
-
-      <LineChart
-      xAxis={[{data: [1, 2, 3, 5, 8, 10]}]}
-      series={[
-        {
-          data: [2, 5.5, 2, 8.5, 1.5, 5],
-        },
-      ]}
-      width={500}
-      height={300}
-    />
-  ) : (
-          <DataGrid
+    <DataGrid
         rows={timerows}
         columns={columns}
         slots={{
@@ -201,10 +171,8 @@ const WeightChart: React.FC = () => {
         checkboxSelection
         disableRowSelectionOnClick
       />
-    )}
-
     </Box>
   );
 };
 
-export default WeightChart;
+export default Prescriptions;
