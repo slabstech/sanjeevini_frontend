@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const API_URL = import.meta.env.VITE_SANJEEVINI_BACKEND_APP_API_URL;
 
-export const fetchUserAppointmentData = createAsyncThunk<
+export const fetchPrescriptionData = createAsyncThunk<
 string[], 
   {
     page?: number;
@@ -10,10 +10,10 @@ string[],
     appointment_day_before?: string;
     user_id?: number;
   } & { rejectValue: string }, { rejectValue: string }>(
-      'sanjeeviniApp/fetchUserAppointmentData',
+      'sanjeeviniApp/fetchPrescriptionData',
       async (args:any, thunkAPI:any) => {
         try {
-          let url = API_URL + 'userappointment/?page=';
+          let url = API_URL + 'prescriptionapp/?page=';
           if (args.page) {
             url += args.page;
           }
@@ -74,16 +74,16 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder:any) => {
     builder
-        .addCase(fetchUserAppointmentData.pending, (state:any) => {
+        .addCase(fetchPrescriptionData.pending, (state:any) => {
           state.loading = true;
           state.error = null;
         })
-        .addCase(fetchUserAppointmentData.fulfilled, (state:any, action:any) => {
+        .addCase(fetchPrescriptionData.fulfilled, (state:any, action:any) => {
           state.loading = false;
           state.userData.push(...action.payload);
           state.totalPages = action.meta.arg.total_pages;
         })
-        .addCase(fetchUserAppointmentData.rejected, (state:any, action:any) => {
+        .addCase(fetchPrescriptionData.rejected, (state:any, action:any) => {
           state.loading = false;
           state.error = action.error.message || 'Something went wrong';
         });

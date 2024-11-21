@@ -13,7 +13,7 @@ string[],
       'sanjeeviniApp/fetchUserAppointmentData',
       async (args:any, thunkAPI:any) => {
         try {
-          let url = API_URL + 'userappointment/?page=';
+          let url = API_URL + 'userappointmentapp/?page=';
           if (args.page) {
             url += args.page;
           }
