@@ -10,7 +10,6 @@ import DiscordIcon from './assets/discordIcon';
 import UserApp from './components/User/UserApp';
 import DoctorApp from './components/Doctor/DoctorApp';
 import About from './components/utils/About';
-import { useMediaQuery } from '@mui/material';
 
 function App() {
 
