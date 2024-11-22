@@ -6,7 +6,7 @@ import {LocalizationProvider, DatePicker} from '@mui/x-date-pickers';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {DataGrid, GridColDef, GridToolbarContainer, useGridApiContext}
   from '@mui/x-data-grid';
-import {fetchUserAppData} from '../../redux/reducer/UserDataReducer';
+import {fetchPrescriptionData} from '../../redux/reducer/user/PrescriptionDataReducer';
 import {RootState, AppDispatch} from '../../redux/store';
 import dayjs,{ Dayjs } from 'dayjs';
 
@@ -104,7 +104,7 @@ const Prescriptions: React.FC = () => {
   useEffect(() => {
     if (loading) {
     dispatch(
-      fetchUserAppData({
+      fetchPrescriptionData({
         page: 1,
         appointment_day_after: todayDate,
         appointment_day_before: nextSevenDays,
