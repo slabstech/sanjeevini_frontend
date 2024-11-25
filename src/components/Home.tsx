@@ -3,7 +3,6 @@ import { Container, Grid, Typography, Divider } from '@mui/material';
 import VisionIntegration from './Integration/VisionIntegration';
 import VoiceIntegration from './Integration/VoiceIntegration';
 import DocumentIntegration from './Integration/DocumentIntegration';
-import '../workers/pdf-worker';
 interface AppState {
 }
 
@@ -29,10 +28,7 @@ class Home extends Component<HomeProps, AppState> {
           Sanjeevini - AI Health App
         </Typography>
       </Container>
-      <div className="App">
-      <h1>PDF Viewer</h1>
       <DocumentIntegration url="/path/to/your/document.pdf" />
-    </div>
       <div  style={{ display: 'none' }} >
       <Container>
         <Typography variant="h4" gutterBottom>
