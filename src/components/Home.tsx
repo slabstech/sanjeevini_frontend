@@ -2,7 +2,6 @@ import { Component } from 'react';
 import { Container, Grid, Typography, Divider } from '@mui/material';
 import VisionIntegration from './Integration/VisionIntegration';
 import VoiceIntegration from './Integration/VoiceIntegration';
-import DocumentIntegration from './Integration/DocumentIntegration';
 interface AppState {
 }
 
@@ -28,7 +27,6 @@ class Home extends Component<HomeProps, AppState> {
           Sanjeevini - AI Health App
         </Typography>
       </Container>
-      <DocumentIntegration url="/path/to/your/document.pdf" />
       <div  style={{ display: 'none' }} >
       <Container>
         <Typography variant="h4" gutterBottom>
