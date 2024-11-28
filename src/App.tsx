@@ -9,6 +9,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import DiscordIcon from './assets/discordIcon';
 import UserApp from './components/User/UserApp';
 import DoctorApp from './components/Doctor/DoctorApp';
+import About from './components/utils/About';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Home serverUrl={onlineUrl} />} />
           <Route path="/user" element={<UserApp  />} />
           <Route path="/doctor" element={<DoctorApp  />} />
+          <Route path="/about" element={<About  />} />
           <Route path="/login" element={<Login/>} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
@@ -53,7 +55,7 @@ function App() {
           <IconButton size="small" href="https://github.com/slabstech" target="_blank">
             <GitHubIcon />
           </IconButton>
-          <IconButton size="small" href="https://x.com/gaganyatri" target="_blank">
+          <IconButton size="small" href="https://x.com/try_sanjeevini" target="_blank">
             <TwitterIcon />
           </IconButton>
           <IconButton size="small" href="https://discord.gg/HAXjG7sC" target="_blank">
