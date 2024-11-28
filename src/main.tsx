@@ -1,9 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App';
 import ErrorBoundary from './components/utils/ErrorBoundary';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { lightBlue, deepOrange } from '@mui/material/colors';
 import { BrowserRouter } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import {Provider} from 'react-redux';
@@ -21,12 +18,6 @@ import FAQ from './components/ux/components/FAQ';
 import Footer from './components/ux/components/Footer';
 import AppTheme from './components/ux/shared-theme/AppTheme';
 
-const theme = createTheme({
-  palette: {
-    primary: lightBlue,
-    secondary: deepOrange,
-  },
-});
 const rootElement = document.getElementById('root');
 if (rootElement) {
   createRoot(rootElement).render(
