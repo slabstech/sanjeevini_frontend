@@ -55,7 +55,7 @@ function App() {
           <IconButton size="small" href="https://github.com/slabstech" target="_blank">
             <GitHubIcon />
           </IconButton>
-          <IconButton size="small" href="https://x.com/gaganyatri" target="_blank">
+          <IconButton size="small" href="https://x.com/try_sanjeevini" target="_blank">
             <TwitterIcon />
           </IconButton>
           <IconButton size="small" href="https://discord.gg/HAXjG7sC" target="_blank">

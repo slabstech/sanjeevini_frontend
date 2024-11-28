@@ -35,10 +35,7 @@ if (rootElement) {
         <Provider store={store}>
           <BrowserRouter>
 
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-                <App />
-            </ThemeProvider>
+
             <AppTheme >
       <CssBaseline enableColorScheme />
 
