@@ -50,6 +50,9 @@ export default function AppAppBar() {
   const handleHomeClick = () => {
     navigate('/');
   };
+  const handleFAQClick = () => {
+    navigate('/faq');
+  };
 
   return (
     <AppBar
@@ -70,7 +73,6 @@ export default function AppAppBar() {
               <Button variant="text" color="info" size="small" onClick={handleHomeClick}>
                 Features
               </Button>
-
             <div style={{ display: 'none' }}>
               <Button variant="text" color="info" size="small">
                 Testimonials
@@ -82,7 +84,7 @@ export default function AppAppBar() {
                 Pricing
               </Button>
             </div>
-              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }} onClick={handleHomeClick}>
+              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }} onClick={handleFAQClick}>
                 FAQ
               </Button>
               <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }} onClick={handleBlogClick}>
