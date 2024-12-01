@@ -146,7 +146,9 @@ export default function Hero() {
           </div>
           
         </Stack>
+        <div style={{ display: 'none' }}>
         <StyledBox id="image" />
+        </div>
       </Container>
     </Box>
   );

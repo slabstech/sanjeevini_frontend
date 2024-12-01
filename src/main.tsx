@@ -1,7 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import ErrorBoundary from './components/utils/ErrorBoundary';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import CssBaseline from '@mui/material/CssBaseline';
 import {Provider} from 'react-redux';
 import {store} from './redux/store';
@@ -17,7 +18,8 @@ import Testimonials from './components/ux/components/Testimonials';
 import FAQ from './components/ux/components/FAQ';
 import Footer from './components/ux/components/Footer';
 import AppTheme from './components/ux/shared-theme/AppTheme';
-
+import SignIn from './components/ux/sign-in/SignIn';
+import SignUp from './components/ux/sign-up/SignUp';
 const rootElement = document.getElementById('root');
 if (rootElement) {
   createRoot(rootElement).render(
@@ -31,8 +33,17 @@ if (rootElement) {
       <CssBaseline enableColorScheme />
 
       <AppAppBar />
+      <Routes>
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        {/* Other routes */}
+      </Routes>
       <Hero />
-      <div>
+      <Divider /> 
+      <FAQ />
+      <Divider />
+      <Footer />
+      <div style={{ display: 'none' }}>
         <LogoCollection />
         <Features />
         <Divider />

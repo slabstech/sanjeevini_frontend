@@ -1,4 +1,6 @@
+// src/components/ux/components/AppAppBar.tsx
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
@@ -30,10 +32,19 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 
 export default function AppAppBar() {
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
+
+  const handleSignInClick = () => {
+    navigate('/signin');
+  };
+  const handleSignUpClick = () => {
+    navigate('/signup');
+  };
+
 
   return (
     <AppBar
@@ -81,10 +92,10 @@ export default function AppAppBar() {
               alignItems: 'center',
             }}
           >
-            <Button color="primary" variant="text" size="small">
+            <Button color="primary" variant="text" size="small" onClick={handleSignInClick}>
               Sign in
             </Button>
-            <Button color="primary" variant="contained" size="small">
+            <Button color="primary" variant="contained" size="small" onClick={handleSignUpClick}>
               Sign up
             </Button>
             <ColorModeIconDropdown />
@@ -118,7 +129,7 @@ export default function AppAppBar() {
 
                 <MenuItem>Features</MenuItem>
                 <div style={{ display: 'none' }}>
-             
+
                 <MenuItem>Testimonials</MenuItem>
                 <MenuItem>Highlights</MenuItem>
                 <MenuItem>Pricing</MenuItem>
@@ -127,12 +138,12 @@ export default function AppAppBar() {
                 <MenuItem>Blog</MenuItem>
                 <Divider sx={{ my: 3 }} />
                 <MenuItem>
-                  <Button color="primary" variant="contained" fullWidth>
+                  <Button color="primary" variant="contained" fullWidth onClick={handleSignUpClick}>
                     Sign up
                   </Button>
                 </MenuItem>
                 <MenuItem>
-                  <Button color="primary" variant="outlined" fullWidth>
+                  <Button color="primary" variant="outlined" fullWidth onClick={handleSignInClick}>
                     Sign in
                   </Button>
                 </MenuItem>
