@@ -38,20 +38,30 @@ export default function AppAppBar() {
     setOpen(newOpen);
   };
 
+  const handleDemoClick = () => {
+    navigate('/demo');
+    toggleDrawer(false)();
+  };
+
   const handleSignInClick = () => {
     navigate('/signin');
+    toggleDrawer(false)();
   };
   const handleSignUpClick = () => {
     navigate('/signup');
+    toggleDrawer(false)();
   };
   const handleBlogClick = () => {
     navigate('/blog');
+    toggleDrawer(false)();
   };
   const handleHomeClick = () => {
     navigate('/');
+    toggleDrawer(false)();
   };
   const handleFAQClick = () => {
     navigate('/faq');
+    toggleDrawer(false)();
   };
 
   return (
@@ -72,6 +82,9 @@ export default function AppAppBar() {
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <Button variant="text" color="info" size="small" onClick={handleHomeClick}>
                 Features
+              </Button>
+              <Button variant="text" color="info" size="small" onClick={handleDemoClick}>
+                Demo
               </Button>
             <div style={{ display: 'none' }}>
               <Button variant="text" color="info" size="small">
@@ -146,7 +159,12 @@ export default function AppAppBar() {
                 <MenuItem>Pricing</MenuItem>
                 </div>
                 <MenuItem>
-                  <Button color="primary" variant="contained" fullWidth onClick={handleHomeClick}>
+                  <Button color="primary" variant="contained" fullWidth onClick={handleDemoClick}>
+                    Demo
+                  </Button>
+                </MenuItem>
+                <MenuItem>
+                  <Button color="primary" variant="contained" fullWidth onClick={handleFAQClick}>
                     FAQ
                   </Button>
                 </MenuItem>
