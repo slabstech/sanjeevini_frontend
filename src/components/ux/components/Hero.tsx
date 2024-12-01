@@ -66,7 +66,7 @@ export default function Hero() {
           sx={{ alignItems: 'center', width: { xs: '100%', sm: '70%' } }}
         >
           <Typography
-            variant="h1"
+            variant="h3"
             sx={{
               display: 'flex',
               flexDirection: { xs: 'column', sm: 'row' },
@@ -74,20 +74,17 @@ export default function Hero() {
               fontSize: 'clamp(3rem, 10vw, 3.5rem)',
             }}
           >
-            Our&nbsp;latest&nbsp;
-            <Typography
-              component="span"
-              variant="h1"
-              sx={(theme) => ({
-                fontSize: 'inherit',
-                color: 'primary.main',
-                ...theme.applyStyles('dark', {
-                  color: 'primary.light',
-                }),
-              })}
-            >
-              products
-            </Typography>
+            Sanjeevini
+          </Typography>
+
+          <Typography
+            sx={{
+              textAlign: 'center',
+              color: 'text.secondary',
+              width: { sm: '100%', md: '80%' },
+            }}
+          >
+          A privacy-focused, local AI-powered medical translation agent for doctors.
           </Typography>
           <Typography
             sx={{
@@ -96,16 +93,15 @@ export default function Hero() {
               width: { sm: '100%', md: '80%' },
             }}
           >
-            Explore our cutting-edge dashboard, delivering high-quality solutions
-            tailored to your needs. Elevate your experience with top-tier features
-            and services.
           </Typography>
+         Enables accurate diagnosis across language barriers by processing sensitive patient data on-device.
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
             spacing={1}
             useFlexGap
             sx={{ pt: 2, width: { xs: '100%', sm: '350px' } }}
           >
+            <div style={{ display: 'none' }}>
             <InputLabel htmlFor="email-hero" sx={visuallyHidden}>
               Email
             </InputLabel>
@@ -132,7 +128,10 @@ export default function Hero() {
             >
               Start now
             </Button>
+            </div>
           </Stack>
+
+          <div style={{ display: 'none' }}>
           <Typography
             variant="caption"
             color="text.secondary"
@@ -144,6 +143,8 @@ export default function Hero() {
             </Link>
             .
           </Typography>
+          </div>
+          
         </Stack>
         <StyledBox id="image" />
       </Container>

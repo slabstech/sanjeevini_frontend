@@ -54,6 +54,8 @@ export default function AppAppBar() {
               <Button variant="text" color="info" size="small">
                 Features
               </Button>
+
+            <div style={{ display: 'none' }}>
               <Button variant="text" color="info" size="small">
                 Testimonials
               </Button>
@@ -63,6 +65,7 @@ export default function AppAppBar() {
               <Button variant="text" color="info" size="small">
                 Pricing
               </Button>
+            </div>
               <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
                 FAQ
               </Button>
@@ -114,9 +117,12 @@ export default function AppAppBar() {
                 </Box>
 
                 <MenuItem>Features</MenuItem>
+                <div style={{ display: 'none' }}>
+             
                 <MenuItem>Testimonials</MenuItem>
                 <MenuItem>Highlights</MenuItem>
                 <MenuItem>Pricing</MenuItem>
+                </div>
                 <MenuItem>FAQ</MenuItem>
                 <MenuItem>Blog</MenuItem>
                 <Divider sx={{ my: 3 }} />
