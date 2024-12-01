@@ -35,7 +35,7 @@ string[],
             id: rawUser.id,
             appointment_day: rawUser.appointment_day,
             //appointment_time: new Date(rawUser.appointment_time).toISOString().slice(11, 19),
-            doctor_name: rawUser.doctor_name,
+            doctor_name: rawUser.patient_name,
             status: rawUser.status,
             observations: rawUser.observations
             // map other properties as needed
