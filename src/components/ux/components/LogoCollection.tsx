@@ -33,6 +33,7 @@ export default function LogoCollection() {
   const logos = theme.palette.mode === 'light' ? darkLogos : whiteLogos;
 
   return (
+    <div style={{ display: 'none' }}>
     <Box id="logoCollection" sx={{ py: 4 }}>
       <Typography
         component="p"
@@ -54,5 +55,6 @@ export default function LogoCollection() {
         ))}
       </Grid>
     </Box>
+    </div>
   );
 }

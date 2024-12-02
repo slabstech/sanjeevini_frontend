@@ -1,4 +1,6 @@
+// src/components/ux/components/AppAppBar.tsx
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
@@ -30,9 +32,36 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 
 export default function AppAppBar() {
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
+  };
+
+  const handleDemoClick = () => {
+    navigate('/demo');
+    toggleDrawer(false)();
+  };
+
+  const handleSignInClick = () => {
+    navigate('/signin');
+    toggleDrawer(false)();
+  };
+  const handleSignUpClick = () => {
+    navigate('/signup');
+    toggleDrawer(false)();
+  };
+  const handleBlogClick = () => {
+    navigate('/blog');
+    toggleDrawer(false)();
+  };
+  const handleHomeClick = () => {
+    navigate('/');
+    toggleDrawer(false)();
+  };
+  const handleFAQClick = () => {
+    navigate('/faq');
+    toggleDrawer(false)();
   };
 
   return (
@@ -51,9 +80,13 @@ export default function AppAppBar() {
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             <SanjeeviniIcon />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Button variant="text" color="info" size="small">
+              <Button variant="text" color="info" size="small" onClick={handleHomeClick}>
                 Features
               </Button>
+              <Button variant="text" color="info" size="small" onClick={handleDemoClick}>
+                Demo
+              </Button>
+            <div style={{ display: 'none' }}>
               <Button variant="text" color="info" size="small">
                 Testimonials
               </Button>
@@ -63,10 +96,11 @@ export default function AppAppBar() {
               <Button variant="text" color="info" size="small">
                 Pricing
               </Button>
-              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
+            </div>
+              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }} onClick={handleFAQClick}>
                 FAQ
               </Button>
-              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
+              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }} onClick={handleBlogClick}>
                 Blog
               </Button>
             </Box>
@@ -78,10 +112,10 @@ export default function AppAppBar() {
               alignItems: 'center',
             }}
           >
-            <Button color="primary" variant="text" size="small">
+            <Button color="primary" variant="text" size="small" onClick={handleSignInClick}>
               Sign in
             </Button>
-            <Button color="primary" variant="contained" size="small">
+            <Button color="primary" variant="contained" size="small" onClick={handleSignUpClick}>
               Sign up
             </Button>
             <ColorModeIconDropdown />
@@ -113,20 +147,40 @@ export default function AppAppBar() {
                   </IconButton>
                 </Box>
 
-                <MenuItem>Features</MenuItem>
+                <MenuItem>
+                  <Button color="primary" variant="contained" fullWidth onClick={handleHomeClick}>
+                    Features
+                  </Button>
+                </MenuItem>
+                <div style={{ display: 'none' }}>
+
                 <MenuItem>Testimonials</MenuItem>
                 <MenuItem>Highlights</MenuItem>
                 <MenuItem>Pricing</MenuItem>
-                <MenuItem>FAQ</MenuItem>
-                <MenuItem>Blog</MenuItem>
+                </div>
+                <MenuItem>
+                  <Button color="primary" variant="contained" fullWidth onClick={handleDemoClick}>
+                    Demo
+                  </Button>
+                </MenuItem>
+                <MenuItem>
+                  <Button color="primary" variant="contained" fullWidth onClick={handleFAQClick}>
+                    FAQ
+                  </Button>
+                </MenuItem>
+                <MenuItem>                  
+                  <Button color="primary" variant="contained" fullWidth onClick={handleBlogClick}>
+                    Blog
+                  </Button>
+                </MenuItem>
                 <Divider sx={{ my: 3 }} />
                 <MenuItem>
-                  <Button color="primary" variant="contained" fullWidth>
+                  <Button color="primary" variant="contained" fullWidth onClick={handleSignUpClick}>
                     Sign up
                   </Button>
                 </MenuItem>
                 <MenuItem>
-                  <Button color="primary" variant="outlined" fullWidth>
+                  <Button color="primary" variant="outlined" fullWidth onClick={handleSignInClick}>
                     Sign in
                   </Button>
                 </MenuItem>

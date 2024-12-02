@@ -35,9 +35,13 @@ string[],
             id: rawUser.id,
             appointment_day: rawUser.appointment_day,
             //appointment_time: new Date(rawUser.appointment_time).toISOString().slice(11, 19),
-            doctor_name: rawUser.doctor_name,
+            patient_name: rawUser.patient_name,
             status: rawUser.status,
-            observations: rawUser.observations
+            observations: rawUser.observations,
+            heart_rate: rawUser.heart_rate,
+            blood_pressure_systolic: rawUser.blood_pressure_systolic,
+            blood_pressure_diastolic: rawUser.blood_pressure_diastolic,
+            oxygen_saturation: rawUser.oxygen_saturation,
             // map other properties as needed
           }));
           return userData;
@@ -50,9 +54,13 @@ interface User {
   id: bigint;
   appointment_day: string;
   appointment_time: string;
-  doctor_name: string;
+  patient_name: string;
   status: string;
   observations: string;
+  heart_rate :bigint;
+  blood_pressure_systolic : bigint;
+  blood_pressure_diastolic: bigint;
+  oxygen_saturation :string;
 }
 interface UserState {
   userData: User[];

@@ -6,8 +6,8 @@ export const fetchPrescriptionData = createAsyncThunk<
 string[], 
   {
     page?: number;
-    appointment_day_after?: string;
-    appointment_day_before?: string;
+    expiration_date_after?: string;
+    expiration_date_before?: string;
     user_id?: number;
   } & { rejectValue: string }, { rejectValue: string }>(
       'sanjeeviniApp/fetchPrescriptionData',
@@ -17,11 +17,11 @@ string[],
           if (args.page) {
             url += args.page;
           }
-          if (args.appointment_day_after) {
-            url += `&appointment_day_after=${args.appointment_day_after}`;
+          if (args.expiration_date_after) {
+            url += `&expiration_date_after=${args.expiration_date_after}`;
           }
-          if (args.appointment_day_before) {
-            url += `&appointment_day_before=${args.appointment_day_before}`;
+          if (args.expiration_date_before) {
+            url += `&expiration_date_before=${args.expiration_date_before}`;
           }
           if (args.user_id) {
             url += `&user_id=${args.user_id}`;
@@ -33,11 +33,15 @@ string[],
           const data = await response.json();
           const userData = data.results.map((rawUser: any) => ({
             id: rawUser.id,
-            appointment_day: rawUser.appointment_day,
+            expiration_date: rawUser.expiration_date,
+            issue_date: rawUser.issue_date,
             //appointment_time: new Date(rawUser.appointment_time).toISOString().slice(11, 19),
-            doctor_name: rawUser.doctor_name,
-            status: rawUser.status,
-            observations: rawUser.observations
+            doctor_full_name: rawUser.doctor_full_name,
+            medication: rawUser.medication,
+            dosage: rawUser.dosage,
+            frequency : rawUser.frequency,
+            refill_info : rawUser.refill_info,
+            instructions : rawUser.instructions
             // map other properties as needed
           }));
           return userData;
@@ -48,11 +52,14 @@ string[],
   );
 interface User {
   id: bigint;
-  appointment_day: string;
-  appointment_time: string;
-  doctor_name: string;
-  status: string;
-  observations: string;
+  issue_date: string;
+  expiration_date: string;
+  doctor_full_name: string;
+  medication: string;
+  dosage: string;
+  frequency: string;
+  refill_info: string;
+  instructions: string;
 }
 interface UserState {
   userData: User[];

@@ -14,9 +14,13 @@ interface Message {
   id: bigint;
   appointment_day: string;
   appointment_time: string;
-  doctor_name: string;
+  patient_name: string;
   status: string;
   observations: string;
+  heart_rate :bigint;
+  blood_pressure_systolic : bigint;
+  blood_pressure_diastolic: bigint;
+  oxygen_saturation :string;
 }
 
 const columns: GridColDef<Message>[] = [
@@ -34,7 +38,7 @@ const columns: GridColDef<Message>[] = [
     editable: false,
   },
   {
-    field: 'doctor_name',
+    field: 'patient_name',
     headerName: 'Doctor',
     width: 150,
     editable: false,
@@ -48,6 +52,30 @@ const columns: GridColDef<Message>[] = [
   {
     field: 'observations',
     headerName: 'Observations',
+    width: 150,
+    editable: false,
+  },
+  {
+    field: 'heart_rate',
+    headerName: 'Heart Rate',
+    width: 150,
+    editable: false,
+  },
+  {
+    field: 'blood_pressure_systolic',
+    headerName: 'B.P. systolic',
+    width: 150,
+    editable: false,
+  },
+  {
+    field: 'blood_pressure_diastolic',
+    headerName: 'B.P. diastolic',
+    width: 150,
+    editable: false,
+  },
+  {
+    field: 'oxygen_saturation',
+    headerName: 'Oxygen Saturation',
     width: 150,
     editable: false,
   },

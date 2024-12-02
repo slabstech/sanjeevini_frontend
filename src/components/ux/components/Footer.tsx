@@ -36,6 +36,7 @@ export default function Footer() {
         textAlign: { sm: 'center', md: 'left' },
       }}
     >
+      <div style={{ display: 'none' }}>
       <Box
         sx={{
           display: 'flex',
@@ -156,6 +157,7 @@ export default function Footer() {
           </Link>
         </Box>
       </Box>
+      </div>
       <Box
         sx={{
           display: 'flex',

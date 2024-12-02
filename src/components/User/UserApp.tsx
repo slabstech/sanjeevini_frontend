@@ -20,16 +20,13 @@ type UserAppProps = {
 };
 
 class UserApp extends Component<UserAppProps, AppState> {
-  ollamaBaseUrl = import.meta.env.VITE_OLLAMA_BASE_URL;
-  serverBaseUrl = import.meta.env.VITE_HF_SPACES_URL;
-  isOnline = true;
 
   constructor(props: UserAppProps) {
     super(props);
     // Initialize all components to be shown
     this.state = {
       showCardiacChart: true,
-      showMaternityChart: true,
+      showMaternityChart: false,
       showDiabetesChart: true,
       showWeightChart: true,
       showUserAppointments: true,
