@@ -6,9 +6,12 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-
+import Grid from '@mui/material/Grid2';
+import { Divider } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import { styled } from '@mui/material/styles';
+import SpeechASR from '../../Integration/SpeechASR';
+import SpeechLLM from '../../Integration/SpeechLLM';
 
 const StyledBox = styled('div')(({ theme }) => ({
   alignSelf: 'center',
@@ -101,6 +104,17 @@ export default function Hero() {
             useFlexGap
             sx={{ pt: 2, width: { xs: '100%', sm: '350px' } }}
           >
+            <Grid container spacing={2}>
+              <Grid size={{ xs: 12 }} >
+                <SpeechASR  />
+              </Grid>
+              <Grid size={{ xs: 12 }}>
+                <Divider />
+              </Grid>
+              <Grid size={{ xs: 12 }}>
+                <SpeechLLM  />
+              </Grid>
+            </Grid>
             <div style={{ display: 'none' }}>
             <InputLabel htmlFor="email-hero" sx={visuallyHidden}>
               Email
