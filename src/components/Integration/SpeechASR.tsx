@@ -13,8 +13,7 @@ import MicOffIcon from '@mui/icons-material/MicOff';
 
 const SpeechASR = () => {
   
-  let serverBaseUrl = "http://localhost:10000/api/v1/" ;
-  serverBaseUrl ="http://localhost:10000/api/v1/" ;
+  const serverBaseUrl = "http://localhost:8000/api/v1/" ;
   const chunks = useRef<Blob[]>([]);
   const [recordedUrl, setRecordedUrl] = useState('');
   const mediaRecorder = useRef<MediaRecorder | null>(null);
@@ -98,7 +97,7 @@ const stopRecording = () => {
       return;
     }
     setTableAIProgressLoading(true);
-    const serverEndpoint = serverBaseUrl + '/inference/speech_asr_url/';
+    const serverEndpoint = serverBaseUrl + 'inference/speech_asr_url/';
   
     const formData = new FormData();
     formData.append('audio', audioFile);
