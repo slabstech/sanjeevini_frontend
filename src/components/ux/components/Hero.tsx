@@ -104,6 +104,20 @@ export default function Hero() {
             useFlexGap
             sx={{ pt: 2, width: { xs: '100%', sm: '350px' } }}
           >
+          <Grid container spacing={2}>
+            <Grid size={{ xs: 12 }} >
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/KHK_jaB4D0g?rel=0"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Watch the video"
+            ></iframe>
+            </Grid>
+          </Grid>
+          <div style={{ display: 'none' }}>
             <Grid container spacing={2}>
               <Grid size={{ xs: 12 }} >
                 <SpeechASR  />
@@ -115,6 +129,7 @@ export default function Hero() {
                 <SpeechLLM  />
               </Grid>
             </Grid>
+            </div>
             <div style={{ display: 'none' }}>
             <InputLabel htmlFor="email-hero" sx={visuallyHidden}>
               Email
