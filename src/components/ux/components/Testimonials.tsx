@@ -81,6 +81,7 @@ export default function Testimonials() {
   const logos = theme.palette.mode === 'light' ? darkLogos : whiteLogos;
 
   return (
+    <div style={{ display: 'none' }}>
     <Container
       id="testimonials"
       sx={{
@@ -157,5 +158,6 @@ export default function Testimonials() {
         ))}
       </Grid>
     </Container>
+    </div>
   );
 }

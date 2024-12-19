@@ -12,42 +12,63 @@ import dayjs,{ Dayjs } from 'dayjs';
 
 interface Message {
   id: bigint;
-  appointment_day: string;
-  appointment_time: string;
-  doctor_name: string;
-  status: string;
-  observations: string;
+  issue_date: string;
+  expiration_date: string;
+  doctor_full_name: string;
+  medication: string;
+  dosage: string;
+  frequency: string;
+  refill_info: string;
+  instructions: string;
 }
 
 const columns: GridColDef<Message>[] = [
   {field: 'id', headerName: 'ID', width: 90},
   {
-    field: 'appointment_day',
-    headerName: 'Day',
+    field: 'expiration_date',
+    headerName: 'Expiration Date',
     width: 150,
     editable: false,
   },
   {
-    field: 'appointment_time',
-    headerName: 'Time',
+    field: 'issue_date',
+    headerName: 'Issue Date',
     width: 150,
     editable: false,
   },
   {
-    field: 'doctor_name',
+    field: 'doctor_full_name',
     headerName: 'Doctor',
     width: 150,
     editable: false,
   },
   {
-    field: 'status',
+    field: 'medication',
     width: 150,
-    headerName: 'Status',
+    headerName: 'Medication',
     editable: false,
   },
   {
-    field: 'observations',
-    headerName: 'Observations',
+    field: 'dosage',
+    headerName: 'Dosage',
+    width: 150,
+    editable: false,
+  },
+  {
+    field: 'frequency',
+    headerName: 'Frequency',
+    width: 150,
+    editable: false,
+  },
+  {
+    field: 'refill_info',
+    headerName: 'Refill Info',
+    width: 150,
+    editable: false,
+  },
+  {
+    field: 'instructions',
+    headerName: 'Instructions',
     width: 150,
     editable: false,
   },
@@ -106,8 +127,8 @@ const Prescriptions: React.FC = () => {
     dispatch(
       fetchPrescriptionData({
         page: 1,
-        appointment_day_after: todayDate,
-        appointment_day_before: nextSevenDays,
+        expiration_date_after: todayDate,
+        expiration_date_before: nextSevenDays,
         user_id: userId,
         rejectValue: 'Failed to fetch Prescription.',
       })
@@ -118,7 +139,7 @@ const Prescriptions: React.FC = () => {
   useEffect(() => {
     if (startDate && endDate) {
       const filteredData = userPrescriptionDataList.filter((item:any) => {
-        const itemDate = dayjs(item.appointment_day);
+        const itemDate = dayjs(item.expiration_date);
         return itemDate.isAfter(startDate) && itemDate.isBefore(endDate);
       });
       setTimerows(filteredData);

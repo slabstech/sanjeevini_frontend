@@ -6,9 +6,12 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-
+import Grid from '@mui/material/Grid2';
+import { Divider } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import { styled } from '@mui/material/styles';
+import SpeechASR from '../../Integration/SpeechASR';
+import SpeechLLM from '../../Integration/SpeechLLM';
 
 const StyledBox = styled('div')(({ theme }) => ({
   alignSelf: 'center',
@@ -66,7 +69,7 @@ export default function Hero() {
           sx={{ alignItems: 'center', width: { xs: '100%', sm: '70%' } }}
         >
           <Typography
-            variant="h1"
+            variant="h3"
             sx={{
               display: 'flex',
               flexDirection: { xs: 'column', sm: 'row' },
@@ -74,20 +77,17 @@ export default function Hero() {
               fontSize: 'clamp(3rem, 10vw, 3.5rem)',
             }}
           >
-            Our&nbsp;latest&nbsp;
-            <Typography
-              component="span"
-              variant="h1"
-              sx={(theme) => ({
-                fontSize: 'inherit',
-                color: 'primary.main',
-                ...theme.applyStyles('dark', {
-                  color: 'primary.light',
-                }),
-              })}
-            >
-              products
-            </Typography>
+            Sanjeevini
+          </Typography>
+
+          <Typography
+            sx={{
+              textAlign: 'center',
+              color: 'text.secondary',
+              width: { sm: '100%', md: '80%' },
+            }}
+          >
+          A privacy-focused, local AI-powered medical translation agent for doctors.
           </Typography>
           <Typography
             sx={{
@@ -96,16 +96,42 @@ export default function Hero() {
               width: { sm: '100%', md: '80%' },
             }}
           >
-            Explore our cutting-edge dashboard, delivering high-quality solutions
-            tailored to your needs. Elevate your experience with top-tier features
-            and services.
           </Typography>
+         Enables accurate diagnosis across language barriers by processing sensitive patient data on-device.
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
             spacing={1}
             useFlexGap
             sx={{ pt: 2, width: { xs: '100%', sm: '350px' } }}
           >
+            <div style={{ display: 'none' }}>
+          <Grid container spacing={2}>
+            <Grid size={{ xs: 12 }} >
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/KHK_jaB4D0g?rel=0"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Watch the video"
+            ></iframe>
+            </Grid>
+           
+          </Grid>
+          </div>
+            <Grid container spacing={2}>
+              <Grid size={{ xs: 12 }} >
+                <SpeechASR  />
+              </Grid>
+              <Grid size={{ xs: 12 }}>
+                <Divider />
+              </Grid>
+              <Grid size={{ xs: 12 }}>
+                <SpeechLLM  />
+              </Grid>
+            </Grid>
+            <div style={{ display: 'none' }}>
             <InputLabel htmlFor="email-hero" sx={visuallyHidden}>
               Email
             </InputLabel>
@@ -132,7 +158,10 @@ export default function Hero() {
             >
               Start now
             </Button>
+            </div>
           </Stack>
+
+          <div style={{ display: 'none' }}>
           <Typography
             variant="caption"
             color="text.secondary"
@@ -144,8 +173,12 @@ export default function Hero() {
             </Link>
             .
           </Typography>
+          </div>
+          
         </Stack>
+        <div style={{ display: 'none' }}>
         <StyledBox id="image" />
+        </div>
       </Container>
     </Box>
   );
