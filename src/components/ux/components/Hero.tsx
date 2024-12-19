@@ -104,6 +104,7 @@ export default function Hero() {
             useFlexGap
             sx={{ pt: 2, width: { xs: '100%', sm: '350px' } }}
           >
+            <div style={{ display: 'none' }}>
           <Grid container spacing={2}>
             <Grid size={{ xs: 12 }} >
             <iframe
@@ -116,8 +117,9 @@ export default function Hero() {
               title="Watch the video"
             ></iframe>
             </Grid>
+           
           </Grid>
-          <div style={{ display: 'none' }}>
+          </div>
             <Grid container spacing={2}>
               <Grid size={{ xs: 12 }} >
                 <SpeechASR  />
@@ -129,7 +131,6 @@ export default function Hero() {
                 <SpeechLLM  />
               </Grid>
             </Grid>
-            </div>
             <div style={{ display: 'none' }}>
             <InputLabel htmlFor="email-hero" sx={visuallyHidden}>
               Email
